@@ -46,9 +46,124 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
+  orderPizza: function (ing1, ...restOfIngs) {
+    console.log(ing1);
+    console.log(restOfIngs);
+  },
 };
+
+
+
+
+
+
 /*
-* * Spread operator
+ * * Nullish coalescing operator (??) works with the
+ * * principle of nullish values ( null , undefined )
+ * * instead of falsey values which is why the (??)
+ * * works in the example below. 
+// Short circuiting with the || operator bug
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+// ES2020 nullish coalescing operator fix
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+*/
+/*
+ * * Short Circuiting with the || operator, They take ANY data type, return ANY data type
+ * * short circuiting in case of the || operator stops evaluation at the first
+ * * truthy value that it finds, else it prints the first value. Practically, this can be used to set default values
+ 
+console.log('-----OR-----');
+console.log(2 || 'jonas');
+console.log('' || 'jonas');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+// Practical Example
+// Normal way of doing it
+restaurant.numGuests = 0; // Doesn't work when numGuests is 0 ( solved with null coalescing operator )
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+// || Short circuiting way of doing it
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+
+ * * short circuiting in case of the && operator stops evaluation at the first
+ * * falsy value that it find else it prints the last value.
+ * * Practically, this can be used to check if a property exists.
+ 
+
+console.log('-----AND-----');
+console.log(2 && 'jonas'); // prints 'jonas' because both are truthy
+console.log(0 && 'jonas');
+
+console.log('Hello' && 23 && null && 'jonas');
+
+// Practical example
+// Normal way of doing it
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('pepperoni', 'mushrooms', 'onions');
+}
+
+// && short circuiting way of doing it
+restaurant.orderPizza &&
+  restaurant.orderPizza('pepperoni', 'mushrooms', 'onions');
+*/
+
+/*
+* * REST Pattern & parameters
+* * used when we have variables
+* * names separated by commas
+// Spread operator because it's on the RIGHT side of the assignment operator
+const arr = [1, 2, ...[3, 4]];
+console.log(arr);
+
+// REST pattern because it's on the LEFT side of the assignment operator
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+// Rest of the element and doesn't include any skipped elements and it must be the last element
+const [pizza, _, risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// Functions
+// function to add elements using REST parameters
+const add = function (...numbers) {
+  let sum = 0;
+  numbers.forEach(number => {
+    sum += number;
+  });
+  console.log(sum);
+};
+
+// Use the spread operator to spread the array while also allowing to take in comma separated parameters
+const nums = [1, 2, 3, 4, 5];
+add(...nums);
+add(1, 2, 3, 4, 5, 6);
+
+// calling the function to show how the REST parameter works with a function in our example
+restaurant.orderPizza('pepperoni', 'mushrooms', 'onions');
+restaurant.orderPizza('tomatoes');
+*/
+
+/*
+* * SPREAD operator used when 
+* * we have values separated by commas
 // spread operator is used only when there is somewhere to spread the elements in commas
 const arr = [7, 8, 9];
 const goodNewArr = [...arr, 10, 11, 12];
