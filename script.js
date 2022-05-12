@@ -120,7 +120,60 @@ const gameEvents = new Map([
 ]);
 
 /*
+ * * Coding Challenge #4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+const button = document.querySelector('button');
+button.addEventListener('click', () => {
+  const text = document.querySelector('textarea').value;
+  const inputArray = text.split('\n');
+  for (const [i, e] of inputArray.entries()) {
+    const [first, second] = e.trim().toLowerCase().split('_');
+    console.log(
+      `${first}${second.charAt(0).toUpperCase() + second.slice(1)}`.padEnd(20) +
+        '✅'.repeat(i + 1)
+    );
+  }
+});
+*/
+
+/*
  * * Working with strings
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+
+  for (const n of names) {
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+    // namesUpper.push(n.charAt(0).toUpperCase() + n.slice(1)); // Alternative 1
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1)); // Alternative 2
+  }
+  console.log(namesUpper.join(' '));
+};
+capitalizeName('john doe');
+
+// Padding
+const message = 'Hello world';
+const paddedMessage = message.padStart(20, '.').padEnd(29, '.');
+console.log(paddedMessage);
+
+// Credit Card Masking Feature
+const maskCreditCard = function (cardNumber) {
+  const str = cardNumber + '';
+  const last4Digits = cardNumber.slice(-4);
+  console.log(last4Digits.padStart(str.length, '*'));
+};
+maskCreditCard('1234567890123456');
+
+// Repeat Method
+const repMsg = 'Hello world '.repeat(3);
+console.log(repMsg);
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in the line ${`🔥`.repeat(n)}`);
+};
+planesInLine(5);
  */
 
 /*
